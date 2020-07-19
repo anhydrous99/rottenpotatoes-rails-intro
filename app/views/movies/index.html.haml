@@ -5,11 +5,11 @@
   %thead
     %tr
       %th{:class => hilite('title')}
-        %a{:href => movies_path({:sort => 'title'})} Movie Title
+        %a#title_header{:href => movies_path({:sort => 'title'})} Movie Title
       %th{:class => hilite('rating')}
         %a{:href => movies_path({:sort => 'rating'})} Rating
       %th{:class => hilite('release_date')}
-        %a{:href => movies_path({:sort => 'release_date'})} Release Date
+        %a#release_date_header{:href => movies_path({:sort => 'release_date'})} Release Date
       %th More Info
   %tbody
     - @movies.each do |movie|
