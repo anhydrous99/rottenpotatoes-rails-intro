@@ -10,13 +10,31 @@ class MoviesController < ApplicationController
     # will render app/views/movies/show.<extension> by default
   end
 
+  def movies
+    if session[:rating].nil?
+      Movie.all
+    else
+      Movie.with_ratings session[:rating]
+    end
+  end
+
   def index
+    @all_ratings = Movie.ratings
     session[:sort] = params[:sort] unless params[:sort].nil?
+    session[:rating] = params[:rating].keys unless params[:rating].nil?
+
     @movies =
-      if session[:sort].nil?
+      if session[:rating].nil?
         Movie.all
       else
-        Movie.all.order(session[:sort])
+        Movie.with_ratings session[:rating]
+      end
+
+    @movies =
+      if session[:sort].nil?
+        @movies
+      else
+        @movies.order session[:sort]
       end
   end
 
