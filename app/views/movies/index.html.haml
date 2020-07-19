@@ -4,9 +4,12 @@
 %table#movies.table.table-striped.col-md-12
   %thead
     %tr
-      %th Movie Title
-      %th Rating
-      %th Release Date
+      %th{:class => hilite('title')}
+        %a{:href => movies_path({:sort => 'title'})} Movie Title
+      %th{:class => hilite('rating')}
+        %a{:href => movies_path({:sort => 'rating'})} Rating
+      %th{:class => hilite('release_date')}
+        %a{:href => movies_path({:sort => 'release_date'})} Release Date
       %th More Info
   %tbody
     - @movies.each do |movie|
